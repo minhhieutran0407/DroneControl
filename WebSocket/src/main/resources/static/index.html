@@ -1,0 +1,119 @@
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>Control Drone</title>
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.3.0/sockjs.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+    <script src="/app.js"></script>
+</head>
+<body onload="GetMap();">
+<div class="container">
+    <h1 style="text-align: center; font-family: segoe ui;">
+        Control Drone</h1>
+    <div>
+        <div>
+            <label>Press start to connect and stop to disconnect :</label>
+        </div>
+        <div style="margin-top: 5px;">
+            <button id="button-connect" type="button" class="btn btn-primary">
+                Connect
+            </button>
+            <button id="button-disconnect" type="button" class="btn btn-danger">
+                Disconnect
+            </button>
+            <button id="clearData" class="btn btn-warning" onclick="sendClear()">
+                Clear Data
+            </button>
+<!--            <button id="getCurrentLoca" class="btn btn-primary" onclick="getCurrentLocation()">-->
+<!--                Get Location-->
+<!--            </button>-->
+            <button id="takeoffAndLand" class="btn btn-success" onclick="executeTakeoff()">
+                Takeoff And Land
+            </button>
+            <button id="flyMission" class="btn btn-success" onclick="executeMisson()">
+                Fly Mission RL
+            </button>
+            <button id="flyMissionNorl" class="btn btn-success" onclick="executeMissonNorl()">
+                Fly Mission No RL
+            </button>
+        </div>
+        <div style="margin-top: 5px;">
+            <button id="getCurrentLoca" class="btn btn-outline-primary" onclick="getCurrentLocation()">
+                Get Location
+            </button>
+            <button id="start_create_point" type="button" class="btn btn-outline-primary" onclick="changeCheck()">
+                Start create mission
+            </button>
+            <button id="stop_create_point" type="button" class="btn btn-outline-primary" onclick="disnableMision()">
+                Stop create mission
+            </button>
+            <button id="upload_mission" type="button" class="btn btn-outline-warning" onclick="sendMission()">
+                Upload mission
+            </button>
+            <button id="clear_mission" type="button" class="btn btn-outline-warning" onclick="clearMission()">
+                Clear mission
+            </button>
+        </div>
+        <div class="form-inline" style="margin-top: 5px">
+            <input type="text" class="form-control" id="altSend" placeholder="Enter altitude (default 10m)">
+            <input type="text" class="form-control" id="speedSend" placeholder="Enter speed (default 5m/s)" style="margin-left: 5px">
+            <button id="altspSend" type="submit" class="btn btn-primary" style="margin-left: 5px" onclick="sendAltsp()">Update</button>
+        </div>
+        <div class="border border-secondary" style="width: 610px;border: 1px solid gray; border-radius: 5px; margin-top: 5px; padding: 5px">
+            <h5 class="text-danger" style="margin-top: 5px; margin-left: 2px">Warning: Enter latitude and longitude to mission</h5>
+            <div class="form-inline" style="margin-top: 5px">
+                <input type="text" class="form-control" id="addLat" placeholder="Enter latitude">
+                <input type="text" class="form-control" id="addLon" placeholder="Enter longitude" style="margin-left: 5px">
+                <button id="addLocation" type="submit" class="btn btn-warning" style="margin-left: 5px" onclick="addToMission()">Add to mission</button>
+            </div>
+        </div>
+        <div style="margin-top: 15px;">
+            <p id="infotext" class="text-info">You are not connected</p>
+        </div>
+        <div>
+            <p id="infoState" class="text-warning">No action</p>
+        </div>
+        <div class="text-primary">
+            <span>Altitude of Drone: </span><span id="altDrone">0</span>m
+        </div>
+    </div>
+    <div id="input-group" class="input-group mb-3" style="visibility: hidden; height: 0">
+        <input
+                id="message-input"
+                type="text"
+                class="form-control"
+                placeholder="Enter a message here"
+                aria-describedby="button-addon2"
+        />
+        <div class="input-group-append">
+            <button
+                    class="btn btn-outline-secondary"
+                    type="button"
+                    id="button-send"
+            >
+                Send
+            </button>
+        </div>
+    </div>
+    <div id='mapDiv' style="position:relative; width:100%; height:600px;"></div>
+    <div style="margin-top: 5px; text-align: center">
+        <button id="button-start" type="button" class="btn btn-primary">
+            Start
+        </button>
+        <button id="button-stop" type="button" class="btn btn-danger">
+            Stop
+        </button>
+    </div>
+</div>
+</body>
+</html>

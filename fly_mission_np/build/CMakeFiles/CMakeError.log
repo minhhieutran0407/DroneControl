@@ -1,0 +1,55 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/hieu/MAVSDK_Project_Test/fly_mission_np/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_346bf/fast"
+/usr/bin/make -f CMakeFiles/cmTC_346bf.dir/build.make CMakeFiles/cmTC_346bf.dir/build
+make[1]: Entering directory '/home/hieu/MAVSDK_Project_Test/fly_mission_np/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_346bf.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_346bf.dir/CheckSymbolExists.c.o   -c /home/hieu/MAVSDK_Project_Test/fly_mission_np/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_346bf
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_346bf.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_346bf.dir/CheckSymbolExists.c.o  -o cmTC_346bf 
+CMakeFiles/cmTC_346bf.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_346bf.dir/build.make:97: recipe for target 'cmTC_346bf' failed
+make[1]: *** [cmTC_346bf] Error 1
+make[1]: Leaving directory '/home/hieu/MAVSDK_Project_Test/fly_mission_np/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_346bf/fast' failed
+make: *** [cmTC_346bf/fast] Error 2
+
+File /home/hieu/MAVSDK_Project_Test/fly_mission_np/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/hieu/MAVSDK_Project_Test/fly_mission_np/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_d72ab/fast"
+/usr/bin/make -f CMakeFiles/cmTC_d72ab.dir/build.make CMakeFiles/cmTC_d72ab.dir/build
+make[1]: Entering directory '/home/hieu/MAVSDK_Project_Test/fly_mission_np/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_d72ab.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_d72ab.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_d72ab
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d72ab.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_d72ab.dir/CheckFunctionExists.c.o  -o cmTC_d72ab -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_d72ab.dir/build.make:97: recipe for target 'cmTC_d72ab' failed
+make[1]: *** [cmTC_d72ab] Error 1
+make[1]: Leaving directory '/home/hieu/MAVSDK_Project_Test/fly_mission_np/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_d72ab/fast' failed
+make: *** [cmTC_d72ab/fast] Error 2
+
+
